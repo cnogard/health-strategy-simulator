@@ -1,2 +1,2 @@
 # health-strategy-simulator
-Captal Care 360 App
+Capital Care 360 App
