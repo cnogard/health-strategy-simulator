@@ -36,4 +36,4 @@ def get_risk_insight(age=None, health_status=None):
 
 # Optional: expose a utility to get both risk values and trajectory
 def get_risk_trajectory(age, health_status):
-    return projected_risk(age, health_status)s
+    return projected_risk(age, health_status)
