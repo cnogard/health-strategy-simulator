@@ -1,6 +1,7 @@
 # Main Streamlit App
 
 import streamlit as st
+import json
 st.set_page_config(page_title="Health Strategy Simulator", layout="wide")
 
 import pandas as pd
@@ -451,6 +452,28 @@ if st.session_state.get("step3_submitted") and not st.session_state.get("step4_s
             ax.legend(loc="upper left")
 
             st.pyplot(fig)
+
+
+# 👇 Only after simulation has run and session state is complete
+if st.session_state.get("step4_completed", False):
+    user_data = {
+        "profile": st.session_state.get("profile", {}),
+        "care_preferences": st.session_state.get("care_preferences", {}),
+        "financials": st.session_state.get("financials", {}),
+        "capital_strategy": st.session_state.get("cap_alloc", {}),
+        "risk_summary": st.session_state.get("risk_summary", {}),
+        "recommendations": st.session_state.get("recommendations", {}),
+    }
+
+    json_data = json.dumps(user_data, indent=2)
+
+    st.download_button(
+        label="⬇️ Download This Simulation",
+        data=json_data,
+        file_name="my_health_simulation.json",
+        mime="application/json",
+        help="Save this file to reload your simulation later."
+    )
 
 # Reset logic if Step 1 changes
 if st.session_state.get("step1_changed"):
