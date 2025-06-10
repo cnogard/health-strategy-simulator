@@ -17,6 +17,15 @@ with st.sidebar:
     if code != "HSS_Beta_2025v1!":
         st.stop()
 
+# --- Upload Previous Simulation ---
+with st.expander("⬆️ Upload Previous Simulation", expanded=False):
+    uploaded_file = st.file_uploader("Choose a file to upload", type="json")
+    if uploaded_file is not None:
+        import json
+        session_data = json.load(uploaded_file)
+        st.session_state.update(session_data)
+        st.success("Previous simulation loaded successfully!")
+
 # Step 1 – Insurance and Profile
 st.header("Step 1: Profile & Insurance")
 

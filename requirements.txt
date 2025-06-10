@@ -4,3 +4,4 @@ numpy
 xlsxwriter
 matplotlib
 reportlab
+matplotlib>=3.0
